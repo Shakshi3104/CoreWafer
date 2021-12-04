@@ -2,10 +2,12 @@ import XCTest
 @testable import CoreWafer
 
 final class CoreWaferTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(CoreWafer().text, "Hello, World!")
+    
+    func testCoreCountDeviceHardware() throws {
+        XCTAssertEqual(CoreTypeInformation().coreTypes.count, XDeviceHardware.deviceHardware.processorCount)
+    }
+    
+    func testCoreCountProcessorKit() throws {
+        XCTAssertEqual(CoreTypeInformation().coreTypes.count, ProcessorObserver().coreUsages.count)
     }
 }
