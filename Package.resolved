@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DeviceHardware",
+        "repositoryURL": "https://github.com/Shakshi3104/DeviceHardware",
+        "state": {
+          "branch": null,
+          "revision": "2242fff927a2a2a5742fb500f420b34bd0124764",
+          "version": "1.3.0"
+        }
+      },
+      {
+        "package": "ProcessorKit",
+        "repositoryURL": "https://github.com/Shakshi3104/ProcessorKit",
+        "state": {
+          "branch": null,
+          "revision": "275aff042716b005d42d468828c9464171fd6d18",
+          "version": "0.2.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
