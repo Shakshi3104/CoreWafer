@@ -1,3 +1,5 @@
-# CoreWafer
+# Core Wafer 🧇
 
-A description of this package.
+<div align="center">
+    <img src="corewafer.png" height=64 />
+</div>
