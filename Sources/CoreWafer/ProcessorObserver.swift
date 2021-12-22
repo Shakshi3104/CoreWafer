@@ -15,7 +15,7 @@ public class ProcessorObserver: ObservableObject {
     
     private var cancellable: AnyCancellable?
     
-    init() {
+    public init() {
         overallUsage = CPU.systemUsage()
         coreUsages = CPU.coreUsage()
     }
@@ -26,7 +26,7 @@ public class ProcessorObserver: ObservableObject {
         coreUsages = CPU.coreUsage()
     }
     
-    func start(interval: Double = 5.0) {
+    public func start(interval: Double = 5.0) {
         print("⚙️ Start")
         cancellable = Timer.publish(every: interval, on: .main, in: .common)
             .autoconnect()
@@ -35,7 +35,7 @@ public class ProcessorObserver: ObservableObject {
             })
     }
     
-    func cancel() {
+    public func cancel() {
         print("⚙️ Stop")
         cancellable?.cancel()
     }

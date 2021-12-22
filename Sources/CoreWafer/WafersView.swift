@@ -11,6 +11,10 @@ public struct WafersView: View {
     @ObservedObject var processor: ProcessorObserver
     private let coreType = CoreTypeInformation()
     
+    public init(processor: ProcessorObserver) {
+        self.processor = processor
+    }
+    
     public var body: some View {
         VStack {
             HStack(alignment: .bottom) {
