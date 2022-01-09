@@ -10,7 +10,7 @@ On the iPhone and Apple Silicon Mac, Efficiency core (E-core) and Performance co
 
 ## Usage
 
-<img src="demo.gif" width=325 height=690 align="right">
+<img src="demo.gif" width=195 height=420 align="right">
 
 ```swift
 import SwiftUI
