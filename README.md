@@ -4,7 +4,7 @@
     <img src="corewafer.png" height=64 />
 </div>
 
-Core Wafer is a package for capturing the CPU usage for each core of the Mac or the iPhone, like a CPU Usage window of Activity Monitor.app
+Core Wafer is a package for capturing the CPU usage for each core of the Mac or iPhone, like a CPU Usage window of Activity Monitor.app
 
 On the iPhone and Apple Silicon Mac, Efficiency core (E-core) and Performance core (P-core) are displayed in different colors.
 
@@ -37,6 +37,14 @@ By using `ProcessorObserver` and `CoreTypeInformation`, you can also build your 
 <p align="center">
     <img src="https://raw.githubusercontent.com/Shakshi3104/Gaufre/main/materials/gaufre.gif" width=256 />
 </p>
+
+## Requirements
+
+This package is compatible with iOS 14 or higher and macOS 11 or higher.
+
+## Installation
+
+Core Wafer is available through **Swift Package Manager**.
 
 ## Swift Package Dependencies
 
