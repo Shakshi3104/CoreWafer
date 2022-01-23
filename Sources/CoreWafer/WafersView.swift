@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ProcessorKit
 
 public struct WafersView: View {
     @ObservedObject var processor: ProcessorObserver
@@ -16,21 +17,44 @@ public struct WafersView: View {
     }
     
     public var body: some View {
-        VStack {
+        if processor.coreUsages.count < 30 {
             HStack(alignment: .bottom) {
-                ForEach(0..<processor.coreUsages.count) { num in
-                    // Color of performance core is deeper
-                    let color = coreType.coreTypes[num] == .performance
-                    ? Color.iris
-                    : Color.peacockGreen
-                    
-                    let coreUsage = processor.coreUsages[num]
-                    let totalUsage = min(99.9, round((coreUsage.user + coreUsage.system) * 10.0) / 10.0)
-                    
-                    BarView(value: totalUsage * 1.2, color: color)
-                }
+                EachCoreView(coreUsages: processor.coreUsages, coreTypes: coreType.coreTypes)
             }
             .padding(20)
+        } else {
+            // For Macs with a large number of cores, such as the MacPro, use 2 lines
+            VStack {
+                let halfCoreCount: Int = processor.coreUsages.count / 2
+                
+                EachCoreView(coreUsages: Array(processor.coreUsages[0..<halfCoreCount]),
+                             coreTypes: Array(coreType.coreTypes[0..<halfCoreCount]))
+                
+                EachCoreView(coreUsages: Array(processor.coreUsages[halfCoreCount..<processor.coreUsages.count]),
+                             coreTypes: Array(coreType.coreTypes[halfCoreCount..<processor.coreUsages.count]))
+            }
+        }
+    }
+}
+
+// MARK: - Each core usage bar
+public struct EachCoreView: View {
+    var coreUsages: [ProcessorUsage]
+    var coreTypes: [WaferCoreTypes]
+    
+    public var body: some View {
+        HStack(alignment: .bottom) {
+            ForEach(0..<coreUsages.count) { num in
+                // Color of performance core is purple
+                let color = coreTypes[num] == .performance
+                ? Color.iris
+                : Color.peacockGreen
+                
+                let coreUsage = coreUsages[num]
+                let totalUsage = min(99.9, round((coreUsage.user + coreUsage.system) * 10.0) / 10.0)
+                
+                BarView(value: totalUsage * 1.2, color: color)
+            }
         }
     }
 }
