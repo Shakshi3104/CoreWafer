@@ -60,6 +60,9 @@ public struct CoreTypeInformation {
             case .M1Max:
                 efficiencyCores = 2
                 performanceCores = 8
+            case .M1Ultra:
+                efficiencyCores = 4
+                performanceCores = 16
             default:
                 // Not big.LITTLE
                 efficiencyCores = 0
