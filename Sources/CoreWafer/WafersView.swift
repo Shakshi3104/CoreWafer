@@ -44,7 +44,7 @@ public struct EachCoreView: View {
     
     public var body: some View {
         HStack(alignment: .bottom) {
-            ForEach(0..<coreUsages.count) { num in
+            ForEach(0..<coreUsages.count, id: \.self) { num in
                 // Color of performance core is purple
                 let color = coreTypes[num] == .performance
                 ? Color.iris
