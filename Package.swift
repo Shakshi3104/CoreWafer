@@ -18,7 +18,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Shakshi3104/DeviceHardware", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/Shakshi3104/DeviceHardware", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/Shakshi3104/ProcessorKit", .upToNextMajor(from: "0.2.1")),
     ],
     targets: [
