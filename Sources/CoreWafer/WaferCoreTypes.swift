@@ -43,4 +43,5 @@ enum AppleSilicon: String {
     case M1Pro = "Apple M1 Pro"
     case M1Max = "Apple M1 Max"
     case M1Ultra = "Apple M1 Ultra"
+    case M2 = "Apple M2"
 }
