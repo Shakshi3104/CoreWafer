@@ -33,6 +33,7 @@ public struct CoreTypeInformation {
             let performanceCores: Int
             
             switch chip {
+            // MARK: - A Series
             case .A11:
                 efficiencyCores = 4
                 performanceCores = 2
@@ -51,6 +52,11 @@ public struct CoreTypeInformation {
             case .A15:
                 efficiencyCores = 4
                 performanceCores = 2
+            case .A16:
+                efficiencyCores = 4
+                performanceCores = 2
+                
+            // MARK: - M Series
             case .M1:
                 efficiencyCores = 4
                 performanceCores = 4
@@ -66,6 +72,12 @@ public struct CoreTypeInformation {
             case .M2:
                 efficiencyCores = 4
                 performanceCores = 4
+            case .M2Pro:
+                efficiencyCores = 4
+                performanceCores = deviceHardware.processorCount - efficiencyCores
+            case .M2Max:
+                efficiencyCores = 4
+                performanceCores = 8
             default:
                 // Not big.LITTLE
                 efficiencyCores = 0
