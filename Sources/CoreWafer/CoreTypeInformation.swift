@@ -55,6 +55,9 @@ public struct CoreTypeInformation {
             case .A16:
                 efficiencyCores = 4
                 performanceCores = 2
+            case .A17Pro:
+                efficiencyCores = 4
+                performanceCores = 2
                 
             // MARK: - M Series
             case .M1:
@@ -78,6 +81,9 @@ public struct CoreTypeInformation {
             case .M2Max:
                 efficiencyCores = 4
                 performanceCores = 8
+            case .M2Ultra:
+                efficiencyCores = 8
+                performanceCores = 16
             default:
                 // Not big.LITTLE
                 efficiencyCores = 0
