@@ -42,6 +42,10 @@ public struct CoreTypeInformation {
     private let deviceHardware: XDeviceHardware
     public let coreTypes: [WaferCoreTypes]
     
+    public let coreCount: Int
+    public let efficiencyCoreCount: Int
+    public let performanceCoreCount: Int
+    
     public init() {
         #if os(macOS)
         deviceHardware = MacDeviceHardware.deviceHardware
@@ -49,19 +53,30 @@ public struct CoreTypeInformation {
         deviceHardware = UIDeviceHardware.deviceHardware
         #endif
         
+        coreCount = deviceHardware.processorCount
+        
         if let efficiencyCores = obtainEfficiencyCores(),
            let performanceCores = obtainPerformanceCores() {
             
-            if efficiencyCores + performanceCores == deviceHardware.processorCount {
+            if efficiencyCores + performanceCores == coreCount {
                 // big.LITTLE
+                efficiencyCoreCount = efficiencyCores
+                performanceCoreCount = performanceCores
+                
                 coreTypes = Array(repeating: WaferCoreTypes.efficiency, count: efficiencyCores)
                 + Array(repeating: WaferCoreTypes.performance, count: performanceCores)
             } else {
+                efficiencyCoreCount = 0
+                performanceCoreCount = 0
+                
                 coreTypes = Array(repeating: WaferCoreTypes.plain, count: deviceHardware.processorCount)
             }
             
         } else {
             // Not big.LITTLE
+            efficiencyCoreCount = 0
+            performanceCoreCount = 0
+            
             coreTypes = Array(repeating: WaferCoreTypes.plain, count: deviceHardware.processorCount)
         }
     }
