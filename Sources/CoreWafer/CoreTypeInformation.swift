@@ -4,6 +4,8 @@
 //
 //  Created by MacBook Pro on 2021/12/04.
 //
+import Foundation
+
 import DeviceHardware
 
 #if os(macOS)
@@ -11,6 +13,29 @@ typealias XDeviceHardware = MacDeviceHardware
 #elseif os(iOS)
 typealias XDeviceHardware = UIDeviceHardware
 #endif
+
+// MARK: -
+private func obtainPerformanceCores() -> Int? {
+    var cores: Int64 = 0
+    var size = MemoryLayout<Int64>.size
+    
+    if sysctlbyname("hw.perflevel0.physicalcpu", &cores, &size, nil, 0) != 0 {
+        return nil
+    }
+    
+    return Int(cores)
+}
+
+private func obtainEfficiencyCores() -> Int? {
+    var cores: Int64 = 0
+    var size = MemoryLayout<Int64>.size
+    
+    if sysctlbyname("hw.perflevel1.physicalcpu", &cores, &size, nil, 0) != 0 {
+        return nil
+    }
+    
+    return Int(cores)
+}
 
 // MARK: - Obtain core type information
 public struct CoreTypeInformation {
