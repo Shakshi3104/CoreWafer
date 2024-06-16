@@ -10,8 +10,8 @@ import Combine
 import ProcessorKit
 
 public class ProcessorObserver: ObservableObject {
-    @Published var overallUsage: ProcessorUsage
-    @Published var coreUsages: [ProcessorUsage]
+    @Published public var overallUsage: ProcessorUsage
+    @Published public var coreUsages: [ProcessorUsage]
     
     private var cancellable: AnyCancellable?
     
