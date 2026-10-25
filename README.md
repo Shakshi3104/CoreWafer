@@ -28,6 +28,14 @@ struct ContentView: View {
 }
 ```
 
+The bar colors of each core type can be customized (default: `.peacockGreen` for efficiency cores, `.iris` for performance cores).
+
+```swift
+WafersView(processor: processor,
+           efficiencyCoreColor: .iris,
+           performanceCoreColor: .marigold)
+```
+
 By using `ProcessorObserver` and `CoreTypeInformation`, you can also build your own View. Refer to [`WafersView`](./Sources/CoreWafer/WafersView.swift).
 
 ## Example

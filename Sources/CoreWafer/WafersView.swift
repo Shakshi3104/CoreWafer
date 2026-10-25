@@ -11,15 +11,22 @@ import ProcessorKit
 public struct WafersView: View {
     @ObservedObject var processor: ProcessorObserver
     private let coreType = CoreTypeInformation()
+    private let efficiencyCoreColor: Color
+    private let performanceCoreColor: Color
     
-    public init(processor: ProcessorObserver) {
+    public init(processor: ProcessorObserver,
+                efficiencyCoreColor: Color = .peacockGreen,
+                performanceCoreColor: Color = .iris) {
         self.processor = processor
+        self.efficiencyCoreColor = efficiencyCoreColor
+        self.performanceCoreColor = performanceCoreColor
     }
     
     public var body: some View {
         if processor.coreUsages.count < 30 {
             HStack(alignment: .bottom) {
-                EachCoreView(coreUsages: processor.coreUsages, coreTypes: coreType.coreTypes)
+                EachCoreView(coreUsages: processor.coreUsages, coreTypes: coreType.coreTypes,
+                             efficiencyCoreColor: efficiencyCoreColor, performanceCoreColor: performanceCoreColor)
             }
             .padding(20)
         } else {
@@ -28,10 +35,12 @@ public struct WafersView: View {
                 let halfCoreCount: Int = processor.coreUsages.count / 2
                 
                 EachCoreView(coreUsages: Array(processor.coreUsages[0..<halfCoreCount]),
-                             coreTypes: Array(coreType.coreTypes[0..<halfCoreCount]))
+                             coreTypes: Array(coreType.coreTypes[0..<halfCoreCount]),
+                             efficiencyCoreColor: efficiencyCoreColor, performanceCoreColor: performanceCoreColor)
                 
                 EachCoreView(coreUsages: Array(processor.coreUsages[halfCoreCount..<processor.coreUsages.count]),
-                             coreTypes: Array(coreType.coreTypes[halfCoreCount..<processor.coreUsages.count]))
+                             coreTypes: Array(coreType.coreTypes[halfCoreCount..<processor.coreUsages.count]),
+                             efficiencyCoreColor: efficiencyCoreColor, performanceCoreColor: performanceCoreColor)
             }
         }
     }
@@ -41,14 +50,16 @@ public struct WafersView: View {
 public struct EachCoreView: View {
     var coreUsages: [ProcessorUsage]
     var coreTypes: [WaferCoreTypes]
+    var efficiencyCoreColor: Color = .peacockGreen
+    var performanceCoreColor: Color = .iris
     
     public var body: some View {
         HStack(alignment: .bottom) {
             ForEach(0..<coreUsages.count, id: \.self) { num in
-                // Color of performance core is purple
+                // Color of performance core is purple by default
                 let color = coreTypes[num] == .performance
-                ? Color.iris
-                : Color.peacockGreen
+                ? performanceCoreColor
+                : efficiencyCoreColor
                 
                 let coreUsage = coreUsages[num]
                 let totalUsage = min(99.9, round((coreUsage.user + coreUsage.system) * 10.0) / 10.0)
@@ -83,6 +94,7 @@ public struct BarView: View {
 public extension Color {
     static let iris = Color(.sRGB, red: 0.6, green: 0.5, blue: 0.8)
     static let peacockGreen = Color(.sRGB, red: 0.2, green: 0.6, blue: 0.7)
+    static let marigold = Color(.sRGB, red: 0.9, green: 0.6, blue: 0.2)
 }
 
 // MARK: - Preview
